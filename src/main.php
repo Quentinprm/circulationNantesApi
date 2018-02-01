@@ -1,8 +1,16 @@
 <?php
 
-$ip = $_SERVER['HTTP_CLIENT_IP'];
-$pos = file_get_contents('http://freegeoip.net/json/'.$ip);
+// Contexte
+$opts = array('http' => array('proxy' => 'www-cache:3128', "request_fulluri" => true));
+$context = stream_context_create($opts);
+
+// On récupère les coordonnées de Nantes via l'api google map sous forme de JSON
+$pos = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address=Nantes&key=AIzaSyCbe1PnR0JtbZBZN9mJSu_rb_0kSfsWPCQ',false,$context);
 $resJson = json_decode($pos);
+
+// On extrait la latitude et longitude du Json 
+$latitudeNantes = $resJson->results[0]->geometry->location->lat;
+$longitudeNantes = $resJson->results[0]->geometry->location->lng;
 
 $html = "
 <!doctype html>
@@ -23,7 +31,7 @@ $html = "
 		<div id=\"mapid\"></div>
 
 		<script>
-			var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+			var mymap = L.map('mapid').setView([$latitudeNnates, $longitudeNantes], 13);
 			L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
 				attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"http://mapbox.com\">Mapbox</a>',
     			maxZoom: 18,
