@@ -1,5 +1,9 @@
 <?php
 
+$ip = $_SERVER['HTTP_CLIENT_IP'];
+$pos = file_get_contents('http://freegeoip.net/json/'.$ip);
+$resJson = json_decode($pos);
+
 $html = "
 <!doctype html>
 <html lang=\"fr\">
@@ -17,13 +21,15 @@ $html = "
 	<body>
 		<h1>Circulation de Nantes</h1>
 		<div id=\"mapid\"></div>
+
 		<script>
 			var mymap = L.map('mapid').setView([51.505, -0.09], 13);
 			L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
 				attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"http://mapbox.com\">Mapbox</a>',
-    maxZoom: 18,
-    id: 'mapbox.streets'
-}).addTo(mymap);
+    			maxZoom: 18,
+    			id: 'mapbox.streets'
+			}).addTo(mymap);
+
 		</script>
 	</body>
 
