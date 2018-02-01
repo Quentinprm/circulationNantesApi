@@ -13,7 +13,7 @@ $latitudeNantes = $resJson->results[0]->geometry->location->lat;
 $longitudeNantes = $resJson->results[0]->geometry->location->lng;
 
 // Alertes Info Trafic 
-$alertesTrafic = file_get_contents('http://data.nantes.fr/api/publication/24440040400129_NM_NM_00177/Alertes_infotrafic_nm_STBL/content/?format=json',false,$context);
+$alertesTrafic = file_get_contents('http://api.loire-atlantique.fr/opendata/1.0/traficevents?filter=Tous',false,$context);
 $resJsonAlertes = json_decode($alertesTrafic);
 var_dump($resJsonAlertes);
 
@@ -42,8 +42,6 @@ $html = "
     			maxZoom: 18,
     			id: 'mapbox.streets'
 			}).addTo(mymap);
-
-			var marker = L.marker([$latitudeNantes, $longitudeNantes]).addTo(mymap);
 
 		</script>
 	</body>
