@@ -12,6 +12,11 @@ $resJson = json_decode($pos);
 $latitudeNantes = $resJson->results[0]->geometry->location->lat;
 $longitudeNantes = $resJson->results[0]->geometry->location->lng;
 
+// Alertes Info Trafic 
+$alertesTrafic = file_get_contents('http://data.nantes.fr/api/publication/24440040400129_NM_NM_00177/Alertes_infotrafic_nm_STBL/content/?format=json',false,$context);
+$resJsonAlertes = json_decode($alertesTrafic);
+var_dump($resJsonAlertes);
+
 $html = "
 <!doctype html>
 <html lang=\"fr\">
@@ -31,12 +36,14 @@ $html = "
 		<div id=\"mapid\"></div>
 
 		<script>
-			var mymap = L.map('mapid').setView([$latitudeNnates, $longitudeNantes], 13);
+			var mymap = L.map('mapid').setView([$latitudeNantes, $longitudeNantes], 13);
 			L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
 				attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"http://mapbox.com\">Mapbox</a>',
     			maxZoom: 18,
     			id: 'mapbox.streets'
 			}).addTo(mymap);
+
+			var marker = L.marker([$latitudeNantes, $longitudeNantes]).addTo(mymap);
 
 		</script>
 	</body>
