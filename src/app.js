@@ -6,5 +6,10 @@ var mymap = L.map('mapid').setView([lat, lon], 9);
 			}).addTo(mymap);
 
 for(let i=0; i<donneesApi.length; i++){
-	L.marker([donneesApi[i].latitude, donneesApi[i].longitude]).addTo(mymap);
+	let msg = "";
+	L.marker([donneesApi[i].latitude, donneesApi[i].longitude]).addTo(mymap).bindPopup(msg).openPopup();
 }
+
+//Vérifier ligne 1 à 6 
+// nature, type, statut, longitudeet latitude 
+// Gérer les erreurs serv
