@@ -7,9 +7,35 @@ var mymap = L.map('mapid').setView([lat, lon], 9);
 
 for(let i=0; i<donneesApi.length; i++){
 	let msg = "";
-	L.marker([donneesApi[i].latitude, donneesApi[i].longitude]).addTo(mymap).bindPopup(msg).openPopup();
-}
 
-//Vérifier ligne 1 à 6 
-// nature, type, statut, longitudeet latitude 
-// Gérer les erreurs serv
+        if (typeof donneesApi[i].ligne1 !== 'undefined') {
+            msg += donneesApi[i].ligne1;
+        }
+        if (typeof donneesApi[i].ligne2 !== 'undefined') {
+            msg += donneesApi[i].ligne2;
+        }
+        if (typeof donneesApi[i].ligne3 !== 'undefined') {
+            msg += donneesApi[i].ligne3;
+        }
+        if (typeof donneesApi[i].ligne4 !== 'undefined') {
+            msg += donneesApi[i].ligne4;
+        }
+        if (typeof donneesApi[i].ligne5 !== 'undefined') {
+            msg += donneesApi[i].ligne5;
+        }
+        if (typeof donneesApi[i].ligne6 !== 'undefined') {
+            msg += donneesApi[i].ligne6;
+        }
+        if (typeof donneesApi[i].nature !== 'undefined') {
+            msg += "</br>Nature : " + donneesApi[i].nature + "</br>";
+        }
+        if (typeof donneesApi[i].type !== 'undefined') {
+            msg += "Type : " + donneesApi[i].type + "</br>";
+        }
+        if (typeof donneesApi[i].statut !== 'undefined') {
+            msg += "Statut : " +donneesApi[i].statut;
+        }
+
+	L.marker([donneesApi[i].latitude, donneesApi[i].longitude]).addTo(mymap).bindPopup(msg).openPopup();
+
+}
