@@ -9,22 +9,22 @@ for(let i=0; i<donneesApi.length; i++){
 	let msg = "";
 
         if (typeof donneesApi[i].ligne1 !== 'undefined') {
-            msg += donneesApi[i].ligne1;
+            msg += donneesApi[i].ligne1+" ";
         }
         if (typeof donneesApi[i].ligne2 !== 'undefined') {
-            msg += donneesApi[i].ligne2;
+            msg += donneesApi[i].ligne2+" ";
         }
         if (typeof donneesApi[i].ligne3 !== 'undefined') {
-            msg += donneesApi[i].ligne3;
+            msg += donneesApi[i].ligne3+" ";
         }
         if (typeof donneesApi[i].ligne4 !== 'undefined') {
-            msg += donneesApi[i].ligne4;
+            msg += donneesApi[i].ligne4+" ";
         }
         if (typeof donneesApi[i].ligne5 !== 'undefined') {
-            msg += donneesApi[i].ligne5;
+            msg += donneesApi[i].ligne5+" ";
         }
         if (typeof donneesApi[i].ligne6 !== 'undefined') {
-            msg += donneesApi[i].ligne6;
+            msg += donneesApi[i].ligne6+" ";
         }
         if (typeof donneesApi[i].nature !== 'undefined') {
             msg += "</br>Nature : " + donneesApi[i].nature + "</br>";
