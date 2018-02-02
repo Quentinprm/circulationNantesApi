@@ -15,7 +15,41 @@ $longitudeNantes = $resJson->results[0]->geometry->location->lng;
 // Alertes Info Trafic 
 $alertesTrafic = file_get_contents('http://api.loire-atlantique.fr/opendata/1.0/traficevents?filter=Tous',false,$context);
 $resJsonAlertes = json_decode($alertesTrafic);
-var_dump($resJsonAlertes);
+//var_dump($resJsonAlertes);
+
+// Ligne1.2.3.4.5.6 rattarchement nature type 
+$it = 0;
+$arr = array();
+$arr2 = array();
+foreach ($resJsonAlertes as $value){
+	if(isset($value->longitude) && isset($value->longitude)){
+		$arr2['longitude'] = $value->longitude;
+		$arr2['latitude'] = $value->latitude;
+		$arr2['statut'] = $value->statut;
+		$arr2['type'] = $value->type;
+		$arr2['nature'] = $value->nature;
+		if(isset($value->ligne1)){
+			$arr2['ligne1'] = $value->ligne1;
+		}
+		if(isset($value->ligne2)){
+			$arr2['ligne2'] = $value->ligne2;
+		}
+		if(isset($value->ligne3)){
+			$arr2['ligne3'] = $value->ligne3;
+		}
+		if(isset($value->ligne4)){
+			$arr2['ligne4'] = $value->ligne4;
+		}
+		if(isset($value->ligne5)){
+			$arr2['ligne5'] = $value->ligne5;
+		}
+		if(isset($value->ligne6)){
+			$arr2['ligne6'] = $value->ligne6;
+		}
+		
+	}
+	$arr[] = $arr2;
+}
 
 $html = "
 <!doctype html>
@@ -42,7 +76,7 @@ $html = "
     			maxZoom: 18,
     			id: 'mapbox.streets'
 			}).addTo(mymap);
-
+			
 		</script>
 	</body>
 
