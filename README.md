@@ -1,1 +1,6 @@
-https://webetu.iutnc.univ-lorraine.fr/www/jacquem38u/interoperabilite/circulationNantesApi/src/main.php
+# CirculationNantesApi
+## Une page croisant des API json
+## Authors
+
+Nicolas Jacquemin - Lucas Marquant - Quentin Parmentier
+LP CISIIE Gr.2
